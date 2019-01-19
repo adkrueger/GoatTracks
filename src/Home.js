@@ -536,6 +536,12 @@ class Home extends Component {
     }
 }
 
+/** <!--   _
+       .__(.)< (MEOW)
+        \___)   
+ ~~~~~~~~~~~~~~~~~~-->
+ */
+
 
   
   export default withStyles(styles, { withTheme: true })(Home);
