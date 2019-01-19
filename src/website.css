@@ -1,14 +1,16 @@
-body {
+body{
     background-color: #fff;
 }
 
-a {
-    text-decoration: none;
+a
+{
+text-decoration:none;
 }
 
 button:focus {
     outline: none;
 }
+
 
 
 .header {
@@ -17,7 +19,7 @@ button:focus {
     z-index: 5;
     height: 60px;
     background-color: #C41E3A;
-    box-shadow: 0 10px 40px 0 rgba(0, 0, 0, .2);
+    box-shadow: 0 10px 40px 0 rgba(0,0,0,.2);
     transition: box-shadow .2s ease-in-out;
 }
 
@@ -40,7 +42,7 @@ button:focus {
 }
 
 
-.mainContent {
+.mainContent{
     position: absolute;
     top: 60px;
     left: 0px;
@@ -54,8 +56,7 @@ button:focus {
     font-family: 'Lobster', cursive;
     font-size: 1.4em;
 }
-
-.headerNavLinks a:hover {
+.headerNavLinks a:hover{
     color: gray;
 }
 
@@ -95,15 +96,13 @@ button:focus {
     width: 500%;
     background-color: white;
     border-radius: 25px;
-    box-shadow: 0 10px 40px 0 rgba(0, 0, 0, .3);
+    box-shadow: 0 10px 40px 0 rgba(0,0,0,.3);
     transition: box-shadow .2s ease-in-out;
 }
-
 .overlay {
     position: absolute;
-    transition: opacity .2s ease;
+    transition: opacity .5s ease;
     opacity: 0;
-    visibility: hidden;
     margin-top: -85%;
     margin-left: -20%;
     height: 55px;
@@ -127,7 +126,7 @@ button:focus {
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     text-align: center;
-}
+  }
 
 .imageDia img {
     height: 25px;
@@ -195,17 +194,17 @@ button:focus {
     width: 80px;
 }
 
-a:hover {
+a:hover{
     text-decoration: none;
 }
 
-.profileImage img {
+.profileImage img{
     margin-top: 0;
     height: 120px;
     width: 100%;
     background-color: gray;
-    margin-right: auto;
-    margin-left: auto;
+    margin-right:auto;
+    margin-left:auto;
     object-fit: cover;
     border-radius: 25px 25px 0px 0px;
 }
@@ -232,4 +231,42 @@ a:hover {
     width: 64%;
     height: 64%;
     border-radius: 50%;
+}
+
+.eventBGI {
+    position: absolute;
+    z-index: -1;
+    overflow: hidden;
+    width: 100%;
+}
+.eventBGI img {
+    align-content: center;
+    width: max-content;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 30px;
+    border-color: white;
+    border-width: 5px;
+}
+
+.eventDesc {
+    padding: 40px 40px 0 75px;
+    margin: 0 50px;
+}
+
+.eventTitle {
+    color: mintcream;
+    margin-top: 10px;
+    font-size: 80px;
+}
+
+.eventAttendees {
+    background-color: #C41E3A;
+    padding: 0 5px 5px 5px;
+    color: mintcream;
+    border-style: ridge;
+    border-color: mintcream;
+    border-width: 2px;
+    border-radius: 15px;
+    margin: 0 40px 0 85px;
 }

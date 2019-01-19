@@ -1,38 +1,74 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
+import firebase from "./Firestore";
 
 class Events extends Component {
+    constructor() {
+        super();
+        this.state = {
+            eventData: [],
+        }
+    }
+
+    componentDidMount() {
+        let currentComponent = this;
+        //Load Firebase Stuff
+        const firestore = firebase.firestore();
+        const settings = {timestampsInSnapshots: false};
+        firestore.settings(settings);
+
+        //Load Location or Path for Query
+        const db = firebase.firestore();
+        const compRef = db.collection("events").doc(this.props.match.params.id);
+
+        let ccData = [];
+        //Query Data
+        compRef.get().then(function (doc) {
+            if (doc.exists) {
+                console.log("Document data:", doc.data());
+
+                let newEvent = {
+                    "id": doc.id,
+                    "name": doc.data().name,
+                    "description": doc.data().description,
+                    "location": doc.data().location,
+                    "attending": doc.data().attending,
+                    "image": doc.data().image
+                };
+                ccData = newEvent;
+                console.log(newEvent);
+                currentComponent.setState({eventData: ccData});
+
+            } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+            }
+        }).catch(function (error) {
+            console.log("Error getting document:", error);
+        });
+
+        console.log(this.state.eventData)
+    }
+
     render() {
-      return (
-      <div className="mainContent">
-          <div className="row">
-            <div className="col-sm-1"></div>
-            <div className="col-sm-1">
+        return (
+            <div className="mainContent">
+                <div className="row">
+                    <div className="col-sm-12">
 
-                <p>this is the first column</p>
+                        <br/>
+                        <div className="eventBGI">
+                            <p><img src={this.state.eventData.image}/></p>
+                        </div>
+                        <h1 className="eventTitle">{this.state.eventData.name}</h1>
+                        <br/>
+                        <h3 className="eventDesc">{this.state.eventData.description}</h3>
+                        <br/>
+                        <h3 className="eventAttendees">{this.state.eventData.attending} people are attending</h3>
 
+                    </div>
+                </div>
             </div>
-            <div className="col-sm-9">
-            
-              <br></br>
-              <h2>{this.props.match.params.id}</h2>
-              <p>Duis a turpis sed lacus dapibus elementum sed eu lectus.</p>
-                          
-            </div>
-            <div className="col-sm-1">
-                <p>this is the third column</p>
-
-            </div>
-              <div className="col-sm-12">
-
-                  <br></br>
-                  <h2>{this.props.match.params.id}</h2>
-                  <p>Duis a turpis sed lacus dapibus elementum sed eu lectus.</p>
-
-              </div>
-          </div>
-            
-      </div>
-      );
+        );
     }
 }
 
