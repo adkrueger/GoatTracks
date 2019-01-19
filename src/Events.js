@@ -64,7 +64,10 @@ class Events extends Component {
                         <h3 className="eventDesc">{this.state.eventData.description}</h3>
                         <br/>
                         <h3 className="eventAttendees">{this.state.eventData.attending} people are attending</h3>
-
+                        <h3 className="attendQuestion">Will you be attending as well?</h3>
+                        <button className="attendingButton">YES</button>
+                        <span>    </span>
+                        <button className="attendingButton">NO</button>
                     </div>
                 </div>
             </div>
