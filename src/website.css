@@ -103,6 +103,7 @@ button:focus {
     position: absolute;
     transition: opacity .5s ease;
     opacity: 0;
+    visibility: hidden;
     margin-top: -85%;
     margin-left: -20%;
     height: 55px;
