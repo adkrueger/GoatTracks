@@ -34,6 +34,7 @@ class App extends Component {
     auth.onAuthStateChanged((user) => {
       if (user) {
         this.setState({ user });
+        console.log(user);
       }
 
     });
@@ -52,6 +53,33 @@ class App extends Component {
     auth.signInWithPopup(provider) 
       .then((result) => {
         const user = result.user;
+
+        console.log(user.uid)
+        const db = firebase.firestore();
+        const userRef = db.collection("users").where("userID", "==", user.uid);
+        userRef.get().then(function(snapshot) {
+            if (snapshot.exists){
+              console.log("Does exists")
+            }else{
+              console.log("Does Not exists")
+
+              db.collection("users").add({
+                name: user.displayName,
+                photo: user.photoURL,
+                email: user.email,
+                userID: user.uid,
+                location: new firebase.firestore.GeoPoint(42.2746, -71.8063),
+              })
+              .then(function(docRef) {
+                  console.log("Document written with ID: ", docRef.id);
+              })
+              .catch(function(error) {
+                  console.error("Error adding document: ", error);
+              });
+
+            }
+        });
+
         this.setState({
           user
         });

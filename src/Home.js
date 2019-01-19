@@ -478,13 +478,11 @@ class Home extends Component {
                 "showing": false
               };
               ccData.push(newProg)
-              console.log(newProg)
           });
           currentComponent.setState({ locations: ccData });    
 
         });    
 
-        console.log(this.state.locations)
 
       }
 
