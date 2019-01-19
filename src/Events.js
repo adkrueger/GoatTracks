@@ -1,11 +1,14 @@
 import React, {Component} from 'react';
 import firebase from "./Firestore";
+import locationsRef from "@material-ui/core/es/styles/multiKeyStore";
+import {Link} from "react-router-dom";
 
 class Events extends Component {
     constructor() {
         super();
         this.state = {
             eventData: [],
+            locationData: [],
         }
     }
 
@@ -69,7 +72,11 @@ class Events extends Component {
                         <h3 className="eventDesc">{this.state.eventData.description}</h3>
                         <br/>
                         <br></br><br></br>
-
+                        <Link to={'/location/'+ this.state.eventData.location}>
+                            <div className="eventLocation">
+                                This event is held at: {this.state.eventData.location}
+                            </div>
+                        </Link>
                         <h3 className="eventAttendees">{this.state.eventData.attending} people are attending</h3>
                         <h3 className="attendQuestion">Will you be attending as well?</h3>
                         <button className="attendingButton">YES</button>
