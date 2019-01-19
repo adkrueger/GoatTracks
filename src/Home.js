@@ -1,6 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import GoogleMapReact from 'google-map-react';
 import Button from '@material-ui/core/Button';
+import firebase, { auth, provider } from './Firestore.js';
+import './Firestore.js';  
+
+
+
+
+import shouldPureComponentUpdate from 'react-pure-render/function';
+import Annotation from './my_great_place.jsx';
+
 
 const mapOptions = {
     styles: [
@@ -365,11 +374,62 @@ class Home extends Component {
 
     static defaultProps = {
         center: {
-          lat: 42.272722,
-          lng: -71.809685
+          lat: 42.2746,
+          lng: -71.8063
         },
-        zoom: 11
+        zoom: 17
     };
+
+    constructor() {
+        super();
+    
+        this.state = {
+           name: '',
+           locations: []
+        }
+    }
+    
+
+    shouldComponentUpdate = shouldPureComponentUpdate;
+
+
+    componentDidMount() {
+  
+        let currentComponent = this;
+        //Load Firebase Stuff
+        const firestore = firebase.firestore();
+        const settings = {timestampsInSnapshots: false};
+        firestore.settings(settings);
+    
+        //Load Location or Path for Query
+        const db = firebase.firestore();
+        const compRef = db.collection("locations");
+    
+        var ccData = []
+        //Query Data
+        compRef.get().then(function(querySnapshot) {
+
+
+          querySnapshot.forEach(function(doc) {
+
+
+              let newProg = { 
+                "id": doc.id,
+                "name": doc.data().name, 
+                "lat": doc.data().coords.latitude,
+                "lon": doc.data().coords.longitude,
+                "image": doc.data().image
+              };
+              ccData.push(newProg)
+              console.log(newProg)
+          });
+          currentComponent.setState({ locations: ccData });    
+
+        });    
+
+        console.log(this.state.locations)
+
+      }
 
 
     render() {
@@ -383,11 +443,15 @@ class Home extends Component {
                 defaultZoom={this.props.zoom}
                 options={mapOptions}
                 >
-                <Button
-                    lat={42.272722}
-                    lng={-71.809685}
-                    text="My Marker"
-                />
+        
+
+                 {this.state.locations.map(function(anno, idx){
+                    return (
+                        <Annotation lat={anno.lat} lng={anno.lon} text={anno.name} />
+                    );
+                  })}
+
+
                 </GoogleMapReact>
 
 

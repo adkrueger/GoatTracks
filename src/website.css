@@ -73,3 +73,7 @@ button:focus {
 .btncustom:hover {
     color: black;
 }
+
+.annotation {
+    background-color: #C41E3A;
+}
