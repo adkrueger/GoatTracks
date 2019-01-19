@@ -58,11 +58,18 @@ class Events extends Component {
                         <br/>
                         <div className="eventBGI">
                             <p><img src={this.state.eventData.image}/></p>
+                            <div className="overlayEvent"></div>
                         </div>
+
                         <h1 className="eventTitle">{this.state.eventData.name}</h1>
                         <br/>
+                        <br></br><br></br>
+                        <br></br><br></br>
+
                         <h3 className="eventDesc">{this.state.eventData.description}</h3>
                         <br/>
+                        <br></br><br></br>
+
                         <h3 className="eventAttendees">{this.state.eventData.attending} people are attending</h3>
                         <h3 className="attendQuestion">Will you be attending as well?</h3>
                         <button className="attendingButton">YES</button>
