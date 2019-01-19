@@ -317,10 +317,8 @@ class Header extends React.Component {
              </ListItem>
             </Link>
 
-          </List>
+            <br />
 
-          <List>
-             <br />
 
             <ListItem button key="Settings">
                 <ListItemIcon>
@@ -337,7 +335,9 @@ class Header extends React.Component {
                 </ListItemIcon>
                 <ListItemText primary="Profile" />
              </ListItem>
+
           </List>
+     
         </Drawer>
 
 
