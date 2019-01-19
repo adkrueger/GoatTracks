@@ -409,6 +409,26 @@ class Home extends Component {
         //Query Data
         compRef.get().then(function(querySnapshot) {
 
+          let type;
+          let locName = doc.data().name;
+
+            if (locName.includes("Alpha") || locName.includes("Sigma") || locName.includes("Phi") ||
+                locName.includes("Tau") || locName.includes("Theta") || locName.includes("Zeta"))
+                type = "Greek";
+            else if ((locName.includes("Hall") && !(locName.includes("Boynton") || locName.includes("Goddard") ||
+                locName.includes("Kaven") || locName.includes("Olin") || locName.includes("Stratton"))) ||
+                locName.includes("Apartment") || locName.includes("Elbridge") || locName.includes("Schussler") ||
+                locName.includes("Stoddard") || locName.includes("Trowbridge") || locName.includes("Salisbury") ||
+                locName.includes("Faraday"))
+                type = "Residence Hall";
+            else if (locName.includes("Hughes") || locName.includes("Jeppson") || locName.includes("Skull") ||
+                locName.includes("Power House"))
+                type = "Other";
+            else if (locName.includes("Laboratories") || locName.includes("Hall") || locName.includes("Alden") ||
+                locName.includes("Gateway Park") || locName.includes("Washburn") || locName.includes("Life Sciences"))
+                type = "Education";
+            else
+                type = "Other";
 
           querySnapshot.forEach(function(doc) {
 
@@ -418,7 +438,8 @@ class Home extends Component {
                 "name": doc.data().name, 
                 "lat": doc.data().coords.latitude,
                 "lon": doc.data().coords.longitude,
-                "image": doc.data().image
+                "image": doc.data().image,
+                  "type": type
               };
               ccData.push(newProg)
               console.log(newProg)

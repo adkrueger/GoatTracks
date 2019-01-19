@@ -27,7 +27,7 @@ class App extends Component {
             <Route exact path="/" 
               render={(props) => <Home  {...props} />}
             />
-            <Route path="/events/:id" 
+            <Route path="/events/:id"
               render={ (props) => <Events  {...props} />}
             />
             <Route path="/location/:name" 
