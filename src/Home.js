@@ -492,7 +492,7 @@ class Home extends Component {
 
       return (
       <div className="mainContent">
-      <center>
+      <center className={"search"}>
       <Paper className={classes.root} elevation={1}>
       
             
@@ -504,7 +504,7 @@ class Home extends Component {
           </Paper>
           </center>
 
-            <div style={{ height: '100vh', width: '100%' }}>
+            <div style={{ height: '100%', width: '100%' }}>
                 <GoogleMapReact
                 bootstrapURLKeys={{ key: "AIzaSyB3mad1jG68mBLiQaNSiqu8muGTPog9Wag" }}
                 defaultCenter={this.props.center}
