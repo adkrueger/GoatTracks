@@ -10,6 +10,11 @@ import { Link } from "react-router-dom";
 import shouldPureComponentUpdate from 'react-pure-render/function';
 import Annotation from './my_great_place.jsx';
 
+import { withStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import InputBase from '@material-ui/core/InputBase';
+import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
 
 const mapOptions = {
     styles: [
@@ -370,6 +375,29 @@ const mapOptions = {
     ] // straight out of something like snazzymaps
 };
 
+
+const styles = {
+    root: {
+      padding: '2px 4px',
+      display: 'flex',
+      alignItems: 'center',
+      width: 400,
+    },
+    input: {
+      marginLeft: 8,
+      flex: 1,
+    },
+    iconButton: {
+      padding: 10,
+    },
+    divider: {
+      width: 1,
+      height: 28,
+      margin: 4,
+    },
+  };
+  
+
 class Home extends Component {
 
     static defaultProps = {
@@ -462,9 +490,21 @@ class Home extends Component {
 
 
     render() {
+        const { classes, theme } = this.props;
+
       return (
       <div className="mainContent">
+      <center>
+      <Paper className={classes.root} elevation={1}>
       
+            
+            <InputBase className={classes.input} placeholder="Search" />
+            <IconButton className={classes.iconButton} aria-label="Search">
+            <i class="material-icons">search</i>            
+            </IconButton>
+            
+          </Paper>
+          </center>
 
             <div style={{ height: '100vh', width: '100%' }}>
                 <GoogleMapReact
@@ -496,4 +536,6 @@ class Home extends Component {
     }
 }
 
-export default Home;
+
+  
+  export default withStyles(styles, { withTheme: true })(Home);

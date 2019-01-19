@@ -34,6 +34,10 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 
+import InputBase from '@material-ui/core/InputBase';
+import Divider from '@material-ui/core/Divider';
+
+
 const drawerWidth = 240;
 
 
@@ -249,6 +253,10 @@ class Header extends React.Component {
               {theme.direction === 'rtl' ? <i className="material-icons sideButton">sort</i> :  <i className="material-icons sideButton">sort</i>}
             </IconButton>
           </div>
+          
+          <br />
+
+
 
           <br />
 
