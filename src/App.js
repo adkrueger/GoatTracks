@@ -93,7 +93,7 @@ class App extends Component {
     return (
       <div className="App">
           <div id="loader-wrapper">
-              <img id="loading" src={"https://i.imgur.com/MzBAeZX.gif"}/>
+              <img id="loading" src={"https://i.imgur.com/mLWC6Xx.gif"}/>
           </div>
         <Router>
           <div>

@@ -493,10 +493,10 @@ class Home extends Component {
       return (
       <div className="mainContent">
       <center className={"search"}>
-      <Paper className={classes.root} elevation={1}>
+      <Paper className={classes.root} elevation={1} style={{width: '50%'}}>
       
             
-            <InputBase className={classes.input} placeholder="Search" />
+            <InputBase className={classes.input} placeholder="Search"/>
             <IconButton className={classes.iconButton} aria-label="Search">
             <i class="material-icons">search</i>            
             </IconButton>
