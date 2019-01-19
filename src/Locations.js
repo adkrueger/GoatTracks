@@ -13,6 +13,21 @@ class Locations extends Component {
     }
 
     componentDidMount(){
+
+      const location = window.navigator && window.navigator.geolocation
+
+      if (window.navigator.geolocation) {
+        // geolocation is available
+        console.log("available")
+      } 
+      else {
+        // geolocation is not supported
+        console.log("not available")
+
+      }
+      
+
+      console.log("Mike", location)
       let currentComponent = this;
         //Load Firebase Stuff
         const firestore = firebase.firestore();
