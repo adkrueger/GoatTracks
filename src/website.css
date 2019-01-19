@@ -94,7 +94,7 @@ button:focus {
     height: 300%;
     width: 500%;
     background-color: white;
-    border-radius: 15px;
+    border-radius: 25px;
     box-shadow: 0 10px 40px 0 rgba(0, 0, 0, .3);
     transition: box-shadow .2s ease-in-out;
     z-index: 200;
@@ -131,10 +131,10 @@ button:focus {
 }
 
 .imageDia img {
-    margin-top: -125%;
-    margin-left: 65%;
     height: 25px;
     width: 25px;
+    top: 50px;
+    position: absolute;
     border-radius: 50%;
     border: 2px solid white;
 }
@@ -151,7 +151,7 @@ button:focus {
 .overlayIm {
     position: absolute;
     background-color: #C41E3A;
-    opacity: 0.5;
+    opacity: 1.0;
     margin-top: -95%;
     margin-left: -12%;
     height: 52px;
@@ -165,10 +165,10 @@ button:focus {
     height: 60px;
     left: -30px;
     top: -30px;
-
     border-radius: 60px;
     background-color: transparent;
     opacity: 0.85;
+    transition: opacity 0.2s ease;
     text-align: center;
     color: white;
     font-size: 25px;
@@ -179,6 +179,7 @@ button:focus {
 
 .waypoint:hover {
     z-index: 0;
+    opacity: 1.0;
 }
 
 .locationAnno img {
@@ -201,13 +202,13 @@ a:hover {
 
 .profileImage img {
     margin-top: 0;
-    height: 80px;
+    height: 120px;
     width: 100%;
-    border-radius: 0;
     background-color: gray;
     margin-right: auto;
     margin-left: auto;
-
+    object-fit: cover;
+    border-radius: 25px 25px 0px 0px;
 }
 
 .placeName {
