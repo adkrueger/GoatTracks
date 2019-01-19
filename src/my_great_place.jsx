@@ -2,19 +2,17 @@ import React, {PropTypes, Component} from 'react';
 import shouldPureComponentUpdate from 'react-pure-render/function';
 import { Link } from "react-router-dom";
 
-import {greatPlaceStyle} from './my_great_place_styles.js';
-
 export default class Annotation extends Component {
 
   constructor() {
       super();
       this.annoAction = this.annoAction.bind(this);
-
   }    
 
   static propTypes = {
     text: ""
   };
+
   state = {
     showResults: false,
   };
@@ -32,10 +30,9 @@ export default class Annotation extends Component {
 
   render() {
     return (
-       <div style={greatPlaceStyle} background-image={this.props.tyProImg}>
+       <div className={"waypoint"} background-image={this.props.tyProImg}>
  
           <div>
-              
 
           <Link  to={{pathname: '/location/' + this.props.text}}>
 

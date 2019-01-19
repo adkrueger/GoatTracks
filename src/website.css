@@ -1,16 +1,14 @@
-body{
+body {
     background-color: #fff;
 }
 
-a 
-{ 
-text-decoration:none; 
-} 
-
-button:focus {
-    outline: none; 
+a {
+    text-decoration: none;
 }
 
+button:focus {
+    outline: none;
+}
 
 
 .header {
@@ -19,7 +17,7 @@ button:focus {
     z-index: 5;
     height: 60px;
     background-color: #C41E3A;
-    box-shadow: 0 10px 40px 0 rgba(0,0,0,.2);
+    box-shadow: 0 10px 40px 0 rgba(0, 0, 0, .2);
     transition: box-shadow .2s ease-in-out;
 }
 
@@ -42,7 +40,7 @@ button:focus {
 }
 
 
-.mainContent{
+.mainContent {
     position: absolute;
     top: 60px;
     left: 0px;
@@ -56,7 +54,8 @@ button:focus {
     font-family: 'Lobster', cursive;
     font-size: 1.4em;
 }
-.headerNavLinks a:hover{
+
+.headerNavLinks a:hover {
     color: gray;
 }
 
@@ -96,26 +95,30 @@ button:focus {
     width: 500%;
     background-color: white;
     border-radius: 15px;
-    box-shadow: 0 10px 40px 0 rgba(0,0,0,.3);
+    box-shadow: 0 10px 40px 0 rgba(0, 0, 0, .3);
     transition: box-shadow .2s ease-in-out;
     z-index: 200;
 }
+
 .overlay {
     position: absolute;
-    transition: .5s ease;
+    transition: .2s ease;
     opacity: 0;
+    visibility: hidden;
     margin-top: -85%;
     margin-left: -20%;
     height: 55px;
     width: 55px;
     border-radius: 50%;
-  }
-  
-  .imageDiaOne:hover .overlay {
-    opacity: 1;
-  }
-  
-  .textOverlay {
+    z-index: 5;
+}
+
+.imageDiaOne:hover .overlay {
+    opacity: 1.0;
+    visibility: visible;
+}
+
+.textOverlay {
     color: white;
     font-size: 20px;
     position: absolute;
@@ -125,7 +128,7 @@ button:focus {
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     text-align: center;
-  }
+}
 
 .imageDia img {
     margin-top: -125%;
@@ -156,6 +159,28 @@ button:focus {
     border-radius: 50%;
 }
 
+.waypoint {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    left: -30px;
+    top: -30px;
+
+    border-radius: 60px;
+    background-color: transparent;
+    opacity: 0.85;
+    text-align: center;
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+    padding: 13px 8px 8px;
+    z-index: -1;
+}
+
+.waypoint:hover {
+    z-index: 0;
+}
+
 .locationAnno img {
     border-radius: 50%;
     background-color: '#C41E3A';
@@ -170,18 +195,18 @@ button:focus {
     width: 80px;
 }
 
-a:hover{
+a:hover {
     text-decoration: none;
 }
 
-.profileImage img{
+.profileImage img {
     margin-top: 0;
     height: 80px;
     width: 100%;
     border-radius: 0;
     background-color: gray;
-    margin-right:auto;
-    margin-left:auto;
+    margin-right: auto;
+    margin-left: auto;
 
 }
 
