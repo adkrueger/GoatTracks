@@ -267,9 +267,9 @@ class Header extends React.Component {
             <Link to="/create" className="sideLinks">
             <ListItem button key="Compose">
                 <ListItemIcon>
-                    <i className="material-icons sideButton">queue_music</i>
+                    <i className="material-icons sideButton">event</i>
                 </ListItemIcon>
-                <ListItemText primary="Compose" />
+                <ListItemText primary="Events" />
              </ListItem>
             </Link>
 
@@ -289,9 +289,9 @@ class Header extends React.Component {
 
             <ListItem button key="Compositions">
                 <ListItemIcon>
-                    <i className="material-icons sideButton">dashboard</i>
+                    <i className="material-icons sideButton">person</i>
                 </ListItemIcon>
-                <ListItemText primary="Compositions" />
+                <ListItemText primary="Profile" />
              </ListItem>
           </List>
         </Drawer>
