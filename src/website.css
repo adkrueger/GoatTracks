@@ -170,8 +170,12 @@ button:focus {
     width: 80px;
 }
 
+a:hover{
+    text-decoration: none;
+}
+
 .profileImage img{
-    margin-top: 10%;
+    margin-top: 6%;
     height: 50px;
     width: 50px;
     border-radius: 50%;
