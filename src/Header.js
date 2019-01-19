@@ -113,7 +113,26 @@ class Header extends React.Component {
     openLoginDialog: false,
     openRegisterDialog: false,
     openLog: false,
+
   };
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      open: false,
+      openLoginDialog: false,
+      openRegisterDialog: false,
+      openLog: false,
+      nameReg: "",
+      emailReg: "",
+      passwordReg: "",
+      emailLog: "",
+      passwordLog: "",
+    };
+
+
+  }
 
   
   handleClickOpenRegister = () => {
@@ -152,6 +171,28 @@ class Header extends React.Component {
     this.setState({ open: false });
   };
 
+  
+  handleChangeNameReg  = event => {
+    this.setState({ nameReg: event.target.value });
+  };
+
+  handleChangeEmailReg  = event => {
+    this.setState({ emailReg: event.target.value });
+  };
+
+  handleChangePasswordReg  = event => {
+    this.setState({ passwordReg: event.target.value });
+  };
+
+
+  handleChangeEmailLog  = event => {
+    this.setState({ emailLog: event.target.value });
+  };
+
+  
+  handleChangePasswordLog  = event => {
+    this.setState({ passwordLog: event.target.value });
+  };
 
   render() {
 
@@ -183,52 +224,47 @@ class Header extends React.Component {
             <div className="headerTitle"><Link to="/">Goat Tracks</Link></div>
 
             {this.props.user ?
+              
               <div className="headerSideRight">
 
-                   <Button
-                    className="headerProfileImage"
-                    buttonRef={node => {
-                      this.anchorEl = node;
-                    }}
-                    aria-owns={openLog ? 'menu-list-grow' : undefined}
-                    aria-haspopup="true"
-                    onClick={this.handleToggleLog}
-                  >
-                        <img src={this.props.user.photoURL} />
-                  </Button>
-                      
-                        
+              <Button
+               className="headerProfileImage"
+               buttonRef={node => {
+                 this.anchorEl = node;
+               }}
+               aria-owns={openLog ? 'menu-list-grow' : undefined}
+               aria-haspopup="true"
+               onClick={this.handleToggleLog}
+             >
+                   <img src={this.props.user.photoURL} />
+             </Button>
+                 
+                   
 
-                 <Popper open={openLog} anchorEl={this.anchorEl} transition disablePortal>
-                    {({ TransitionProps, placement }) => (
-                      <Grow
-                        {...TransitionProps}
-                        id="menu-list-grow"
-                        style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
-                      >
-                        <Paper>
-                          <ClickAwayListener onClickAway={this.handleClose}>
-                            <MenuList>
-                              <Link to={"/composer/" + this.props.user.displayName} >
-                                <MenuItem onClick={this.handleClose}>{this.props.user.displayName}</MenuItem>
-                              </Link>
-                              <MenuItem onClick={this.handleClose}>My account</MenuItem>
-                              <MenuItem onClick={this.props.logout}>Logout</MenuItem>
-                            </MenuList>
-                          </ClickAwayListener>
-                        </Paper>
-                      </Grow>
-                    )}
-                  </Popper>
+            <Popper open={openLog} anchorEl={this.anchorEl} transition disablePortal>
+               {({ TransitionProps, placement }) => (
+                 <Grow
+                   {...TransitionProps}
+                   id="menu-list-grow"
+                   style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+                 >
+                   <Paper>
+                     <ClickAwayListener onClickAway={this.handleClose}>
+                       <MenuList>
+                         <MenuItem onClick={this.handleClose}>{this.props.user.displayName}</MenuItem>
+                         <MenuItem onClick={this.props.logout}>Logout</MenuItem>
+                       </MenuList>
+                     </ClickAwayListener>
+                   </Paper>
+                 </Grow>
+               )}
+             </Popper>
 
-              </div>
-                
+         </div>
               :
 
               <div className="headerSideRight">
-                  <button className="btncustom" onClick={this.handleClickOpenLogin}>Log In</button>              
-                  <button className="btncustom" onClick={this.handleClickOpenRegister}>Register</button>              
-
+                  <button className="btncustom" onClick={this.props.login}>Log In</button>              
               </div>
             }
 
@@ -319,7 +355,9 @@ class Header extends React.Component {
               autoFocus
               margin="dense"
               id="name"
+              onChange={this.handleChangeEmailLog}
               label="Email Address"
+              value={this.state.emailLog}
               type="email"
               fullWidth
             />
@@ -327,6 +365,8 @@ class Header extends React.Component {
               autoFocus
               margin="dense"
               id="name"
+              onChange={this.handleChangePasswordLog}
+              value={this.state.passwordLog}
               label="Password"
               type="password"
               fullWidth
@@ -336,7 +376,7 @@ class Header extends React.Component {
             <Button onClick={this.handleCloseLogin} color="primary">
               Cancel
             </Button>
-            <Button onClick={this.handleCloseLogin} color="primary">
+            <Button onClick={this.props.login} color="primary">
               Login
             </Button>
           </DialogActions>
@@ -358,6 +398,8 @@ class Header extends React.Component {
               margin="dense"
               id="name"
               label="Name"
+              onChange={this.handleChangeNameReg}
+              value={this.state.nameReg}
               type="text"
               fullWidth
             />
@@ -365,6 +407,8 @@ class Header extends React.Component {
               autoFocus
               margin="dense"
               id="name"
+              value={this.state.emailReg}
+              onChange={this.handleChangeEmailReg}
               label="Email Address"
               type="email"
               fullWidth
@@ -374,6 +418,8 @@ class Header extends React.Component {
               margin="dense"
               id="name"
               label="Password"
+              onChange={this.handleChangePasswordReg}
+              value={this.state.passwordReg}
               type="password"
               fullWidth
             />
@@ -382,7 +428,7 @@ class Header extends React.Component {
             <Button onClick={this.handleCloseRegister} color="primary">
               Cancel
             </Button>
-            <Button onClick={this.handleCloseRegister} color="primary">
+            <Button onClick={this.props.signup} name={this.state.nameReg} email={this.state.emailReg} password={this.state.passwordReg} color="primary">
               Register
             </Button>
           </DialogActions>

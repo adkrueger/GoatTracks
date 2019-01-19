@@ -196,3 +196,19 @@ a:hover{
 .placeName {
     text-decoration: none;
 }
+
+
+.headerProfileImage {
+    position: absolute;
+    top: -3px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: #dddddf;
+}
+
+.headerProfileImage img {
+    width: 64%;
+    height: 64%;
+    border-radius: 50%;
+}
