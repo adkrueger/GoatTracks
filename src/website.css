@@ -175,10 +175,10 @@ a:hover{
 }
 
 .profileImage img{
-    margin-top: 6%;
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
+    margin-top: 0;
+    height: 80px;
+    width: 100%;
+    border-radius: 0;
     background-color: gray;
     margin-right:auto;
     margin-left:auto;
