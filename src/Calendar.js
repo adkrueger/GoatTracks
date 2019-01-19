@@ -57,7 +57,7 @@ class Calendar extends Component {
             
               <br></br>
               <h2>Events</h2>
-              <p>Duis a turpis sed lacus dapibus elementum sed eu lectus.</p>
+              <p></p>
               <hr></hr> 
 
               {this.state.eventsFeedData.map(function(event, idx){
