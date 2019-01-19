@@ -275,7 +275,7 @@ a:hover {
     top: 60%;
     padding: 40px 40px 0 75px;
     color: black;
-    font-size: 1.2em; 
+    font-size: 1.2em;
     font-weight: 200;
     margin-bottom: 10px;
 }
@@ -297,6 +297,39 @@ a:hover {
     border-radius: 15px;
     margin: 0 40px 0 85px;
 }
+
+#loader-wrapper{
+    transition: 0.5s ease;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 100%;
+    background: #AC2B37;
+    z-index: 9999;
+    -webkit-animation: fadeInOut 6s;
+    animation: fadeInOut 6s;
+    visibility: hidden;
+}
+
+#loading {
+    box-shadow: black 0px 0px 75px -20px;
+}
+
+@keyframes fadeInOut {
+    0% {
+        visibility: visible;
+        opacity: 1.0;
+    }
+    95% {
+        opacity: 1.0;
+    }
+    100% {
+        opacity: 0.0;
+        visibility: hidden;
+    }
+}
+
 
 .attendQuestion {
     margin-top: 40px;

@@ -92,6 +92,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+          <div id="loader-wrapper">
+              <img id="loading" src={"https://i.imgur.com/MzBAeZX.gif"}/>
+          </div>
         <Router>
           <div>
             <Header login = {this.login} logout = {this.logout} user = {this.state.user} />
