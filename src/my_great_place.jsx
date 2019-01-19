@@ -33,13 +33,39 @@ export default class Annotation extends Component {
   render() {
     return (
        <div style={greatPlaceStyle} background-image={this.props.tyProImg}>
+ 
           <div>
-          <Link className="labelHall" to={{pathname: '/location/' + this.props.text}}>
+              
+
+          <Link  to={{pathname: '/location/' + this.props.text}}>
 
             <i className="material-icons sideButton">{this.props.tyImg}</i>
             </Link>
+            <div className="imageDiaOne">
+             <img src={this.props.tyProImg}></img>
+             <div className="overlayIm"></div>
+             <i className="material-icons centerIconGrad">{this.props.tyImg}</i>
+             
+
+             <div class="overlay">
+                <div className="hoverDialog">
+                    <Link className="labelHall" to={{pathname: '/location/' + this.props.text}}>
+                        <div className="profileImage"><img src={this.props.tyProImg}></img></div>
+                        <h3 className="placeName">{this.props.text}</h3>
+                    </Link>
+                </div>
+            </div>
+            </div>
+
+
+            <div className="imageDia">
+             <img src={this.props.tyProImg}></img>
+            </div>
 
           </div>
+
+
+
           { this.state.showResults ? 
           
                 <div className="hoverDialog">
