@@ -308,7 +308,7 @@ class Header extends React.Component {
 
              <br />
 
-            <Link to="/create" className="sideLinks">
+            <Link to="/calendar" className="sideLinks">
             <ListItem button key="Compose">
                 <ListItemIcon>
                     <i className="material-icons sideButton">event</i>

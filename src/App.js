@@ -9,6 +9,7 @@ import Locations from './Locations';
 import Home from './Home';
 import Profile from './Profile';
 import Header from './Header';
+import Calendar from './Calendar';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import firebase, { auth, provider } from './Firestore.js';
@@ -34,7 +35,6 @@ class App extends Component {
     auth.onAuthStateChanged((user) => {
       if (user) {
         this.setState({ user });
-        console.log(user);
       }
 
     });
@@ -97,18 +97,20 @@ class App extends Component {
             <Header login = {this.login} logout = {this.logout} user = {this.state.user} />
 
             <Route exact path="/" 
-              render={(props) => <Home  {...props} />}
+              render={(props) => <Home user = {this.state.user} {...props} />}
             />
             <Route path="/events/:id"
-              render={ (props) => <Events  {...props} />}
+              render={ (props) => <Events user = {this.state.user}  {...props} />}
             />
             <Route path="/location/:name" 
-              render={ (props) => <Locations  {...props} />}
+              render={ (props) => <Locations user = {this.state.user} {...props} />}
             />
             <Route path="/profile/:name" 
-              render={ (props) => <Profile   {...props} />}
+              render={ (props) => <Profile user = {this.state.user}  {...props} />}
             />
-
+            <Route path="/calendar" 
+              render={(props) => <Calendar  user = {this.state.user} {...props} />}
+            />
           </div>
       </Router>
       </div>
