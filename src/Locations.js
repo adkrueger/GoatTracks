@@ -51,12 +51,17 @@ class Locations extends Component {
           <div className="row">
             <div className="col-sm-1"></div>
             <div className="col-sm-10">
+
+                 <div className="eventBGI">
+                      <p><img src={this.state.locationData.image}/></p>
+                      <div className="overlayEvent"></div>
+                  </div>
+
+                  <h1 className="eventTitle">{this.state.locationData.name}</h1>
+
             
               <br></br>
-              <h2>{this.state.locationData.name}</h2>
-              <p>
-              <img src={this.state.locationData.image}/>
-              </p>
+ 
                           
             </div>
             <div className="col-sm-1"></div>
