@@ -62,10 +62,14 @@ class Calendar extends Component {
 
               {this.state.eventsFeedData.map(function(event, idx){
                 return (
-                        
-                  <Link to={'/events/'+event.uid}>
-                    <div> {event.name}</div>
-                  </Link>    
+               
+                    <div className="cardMod"> 
+                        <Link to={'/events/'+event.uid}>
+                            <img className="cardModImg" src={event.image} alt="Card image cap"></img>
+                            <h5 className="cardMod-title">{event.name}</h5>
+                        </Link>
+
+                    </div>
                 );
              })}  
 

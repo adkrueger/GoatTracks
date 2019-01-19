@@ -281,3 +281,53 @@ a:hover {
     border-radius: 15px;
     margin: 0 40px 0 85px;
 }
+
+
+.cardMod {
+    border-radius: 25px;
+    width: 100%;
+    background-color: white;
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+ }
+
+.cardModImg img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.cardMod-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: white;
+  transform: translate(-50%, -50%);
+  font-family: 'Anton', sans-serif;
+  font-weight: lighter;
+  font-size: 1.6em;
+  text-align: center;
+}
+
+.cardMod-text {
+  position: absolute;
+  bottom: 0.02%;
+  left: 50%;
+  color: white;
+  transform: translate(-50%, -50%);
+  font-weight: bolder;
+  font-family: 'Thasadith', sans-serif;
+  font-style: italic;
+
+}
+.cardMod-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  opacity: 0.3;
+  transform: translate(-50%, -50%);
+}
