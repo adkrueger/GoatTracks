@@ -49,8 +49,7 @@ class Locations extends Component {
       return (
       <div className="mainContent">
           <div className="row">
-            <div className="col-sm-1"></div>
-            <div className="col-sm-10">
+            <div className="col-sm-12">
 
                  <div className="eventBGI">
                       <p><img src={this.state.locationData.image}/></p>
@@ -64,7 +63,6 @@ class Locations extends Component {
  
                           
             </div>
-            <div className="col-sm-1"></div>
           </div> 
             
       </div>
