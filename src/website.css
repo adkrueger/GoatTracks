@@ -1,0 +1,75 @@
+body{
+    background-color: #fff;
+}
+
+a 
+{ 
+text-decoration:none; 
+} 
+
+button:focus {
+    outline: none; 
+}
+
+
+
+.header {
+    position: fixed;
+    width: 100vw;
+    z-index: 5;
+    height: 60px;
+    background-color: #C41E3A;
+    border-bottom: 1px solid #f0eeee;
+    box-shadow: 0 10px 40px 0 rgba(0,0,0,.05);
+    transition: box-shadow .2s ease-in-out;
+}
+
+.headerTitle {
+    position: absolute;
+    top: 10px;
+    height: 60px;
+    left: 35%;
+    width: 30%;
+    font-size: 1.1em;
+    color: red;
+    text-align: center;
+}
+
+
+.headerSideRight {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+}
+
+
+.mainContent{
+    position: absolute;
+    top: 60px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+}
+
+.headerTitle a {
+    text-decoration: none;
+    color: white;
+    font-family: 'Lobster', cursive;
+    font-size: 1.4em;
+}
+.headerNavLinks a:hover{
+    color: gray;
+}
+
+.btncustom {
+    background-color: transparent;
+    color: white;
+    border: none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bolder;
+    margin-top: 5px;
+}
+
+.btncustom:hover {
+    color: black;
+}
