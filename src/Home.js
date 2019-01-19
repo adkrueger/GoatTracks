@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import firebase, { auth, provider } from './Firestore.js';
 import './Firestore.js';  
 
-
+import { Link } from "react-router-dom";
 
 
 import shouldPureComponentUpdate from 'react-pure-render/function';
@@ -447,7 +447,10 @@ class Home extends Component {
 
                  {this.state.locations.map(function(anno, idx){
                     return (
-                        <Annotation lat={anno.lat} lng={anno.lon} text={anno.name} />
+                         <Annotation lat={anno.lat} lng={anno.lon} text={anno.name}>
+
+                         </Annotation> 
+                      
                     );
                   })}
 

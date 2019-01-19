@@ -12,6 +12,15 @@ button:focus {
 }
 
 
+.labelHall {
+    color: white;
+}
+
+.labelHall:hover {
+    text-decoration: none;
+    color: white;
+}
+
 
 .header {
     position: fixed;
