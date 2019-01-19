@@ -43,6 +43,7 @@ class App extends Component {
   logout = event => {
     auth.signOut()
     .then(() => {
+
       this.setState({
         user: null
       });
@@ -63,15 +64,15 @@ class App extends Component {
             }else{
               console.log("Does Not exists")
 
-              db.collection("users").add({
+              db.collection("users").doc(user.uid).set({
                 name: user.displayName,
                 photo: user.photoURL,
                 email: user.email,
                 userID: user.uid,
                 location: new firebase.firestore.GeoPoint(42.2746, -71.8063),
               })
-              .then(function(docRef) {
-                  console.log("Document written with ID: ", docRef.id);
+              .then(function(user) {
+                  console.log("Document written with ID: ", user.id);
               })
               .catch(function(error) {
                   console.error("Error adding document: ", error);
