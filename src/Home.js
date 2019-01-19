@@ -377,7 +377,7 @@ class Home extends Component {
           lat: 42.2746,
           lng: -71.8063
         },
-        zoom: 17
+        zoom: 18
     };
 
     constructor() {
@@ -409,29 +409,35 @@ class Home extends Component {
         //Query Data
         compRef.get().then(function(querySnapshot) {
 
-          let type;
-          let locName = doc.data().name;
-
-            if (locName.includes("Alpha") || locName.includes("Sigma") || locName.includes("Phi") ||
-                locName.includes("Tau") || locName.includes("Theta") || locName.includes("Zeta"))
-                type = "Greek";
-            else if ((locName.includes("Hall") && !(locName.includes("Boynton") || locName.includes("Goddard") ||
-                locName.includes("Kaven") || locName.includes("Olin") || locName.includes("Stratton"))) ||
-                locName.includes("Apartment") || locName.includes("Elbridge") || locName.includes("Schussler") ||
-                locName.includes("Stoddard") || locName.includes("Trowbridge") || locName.includes("Salisbury") ||
-                locName.includes("Faraday"))
-                type = "Residence Hall";
-            else if (locName.includes("Hughes") || locName.includes("Jeppson") || locName.includes("Skull") ||
-                locName.includes("Power House"))
-                type = "Other";
-            else if (locName.includes("Laboratories") || locName.includes("Hall") || locName.includes("Alden") ||
-                locName.includes("Gateway Park") || locName.includes("Washburn") || locName.includes("Life Sciences"))
-                type = "Education";
-            else
-                type = "Other";
-
           querySnapshot.forEach(function(doc) {
 
+             let type;
+             let locName = doc.data().name;
+             let typeImg = "";
+
+              if (locName.includes("Alpha") || locName.includes("Sigma") || locName.includes("Phi") ||
+                  locName.includes("Tau") || locName.includes("Theta") || locName.includes("Zeta")){
+                  type = "Greek"
+                  typeImg = "domain"
+              } else if ((locName.includes("Hall") && !(locName.includes("Boynton") || locName.includes("Goddard") ||
+                  locName.includes("Kaven") || locName.includes("Olin") || locName.includes("Stratton"))) ||
+                  locName.includes("Apartment") || locName.includes("Elbridge") || locName.includes("Schussler") ||
+                  locName.includes("Stoddard") || locName.includes("Trowbridge") || locName.includes("Salisbury") ||
+                  locName.includes("Faraday")){
+                  type = "Residence Hall"
+                  typeImg = "people"
+              } else if (locName.includes("Hughes") || locName.includes("Jeppson") || locName.includes("Skull") ||
+                  locName.includes("Power House")){
+                  type = "Other"
+                  typeImg = "location_city"
+              } else if (locName.includes("Laboratories") || locName.includes("Hall") || locName.includes("Alden") ||
+                  locName.includes("Gateway Park") || locName.includes("Washburn") || locName.includes("Life Sciences")){
+                  type = "Education"
+                  typeImg = "school"
+              } else {
+                  type = "Other"
+                  typeImg = "location_city"
+              }
 
               let newProg = { 
                 "id": doc.id,
@@ -439,7 +445,9 @@ class Home extends Component {
                 "lat": doc.data().coords.latitude,
                 "lon": doc.data().coords.longitude,
                 "image": doc.data().image,
-                  "type": type
+                "type": type,
+                "typeImg": typeImg,
+                "showing": false
               };
               ccData.push(newProg)
               console.log(newProg)
@@ -456,6 +464,7 @@ class Home extends Component {
     render() {
       return (
       <div className="mainContent">
+      
 
             <div style={{ height: '100vh', width: '100%' }}>
                 <GoogleMapReact
@@ -468,7 +477,7 @@ class Home extends Component {
 
                  {this.state.locations.map(function(anno, idx){
                     return (
-                         <Annotation lat={anno.lat} lng={anno.lon} text={anno.name}>
+                         <Annotation post={anno} lat={anno.lat} lng={anno.lon} text={anno.name} tyImg={anno.typeImg} tyProImg={anno.image}>
 
                          </Annotation> 
                       
