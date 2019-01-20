@@ -351,27 +351,48 @@ class Header extends React.Component {
                     <i className="material-icons sideButton">event</i>
                 </ListItemIcon>
                 <ListItemText primary="Events" />
+                
              </ListItem>
-            </Link>
 
+            </Link>
             <br />
 
 
-            <ListItem  button key="Settings">
-                <ListItemIcon>
-                    <i className="material-icons sideButton">settings</i>
-                </ListItemIcon>
-                <ListItemText primary="Settings" />
-             </ListItem>
-             <br />
+            {this.props.user ?
+
+              <Link to={"/profile/" + this.props.user.displayName}>
+
+                <ListItem   button key="Settings">
+                    <ListItemIcon>
+                        <i className="material-icons sideButton">settings</i>
+                    </ListItemIcon>
+                    <ListItemText primary="Settings" />
+                </ListItem>
+                </Link>
+            :
+             ""
+            
+            }
+
+            {this.props.user ?
+
+            <Link to={"/profile/" + this.props.user.displayName}>
+                <br />
+
+              <ListItem to={"/profile/" + this.props.user.displayName}  button key="Compositions">
+
+                  <ListItemIcon>
+                      <i className="material-icons sideButton">person</i>
+                  </ListItemIcon>
+                  <ListItemText primary="Profile" />
+              </ListItem>
+              </Link>
+            :
+              <div></div>
+            
+            }
 
 
-            <ListItem  button key="Compositions">
-                <ListItemIcon>
-                    <i className="material-icons sideButton">person</i>
-                </ListItemIcon>
-                <ListItemText primary="Profile" />
-             </ListItem>
 
           </List>
      
