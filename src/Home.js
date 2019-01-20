@@ -401,7 +401,12 @@ class Home extends Component {
 
         this.state = {
             name: '',
-            locations: []
+            locations: [],
+            searchVal: "",
+            centerPoint: {
+                lat: 42.2746,
+                lng: -71.8063
+            }
         }
     }
 
@@ -500,6 +505,65 @@ class Home extends Component {
 
     }
 
+    handleSearch = () => {
+        console.log(this.state.searchVal)
+
+        let currentComponent = this;
+        //Load Firebase Stuff
+        const firestore = firebase.firestore();
+        const settings = {timestampsInSnapshots: false};
+        firestore.settings(settings);
+
+        //Load Location or Path for Query
+        const db = firebase.firestore();
+
+        const youEventsRef = db.collection("locations").where("name", "==", this.state.searchVal);
+                
+        let youEventsRefData = [];
+        //Query Data
+        youEventsRef.get().then(function(querySnapshot) {
+            console.log(querySnapshot)
+
+            querySnapshot.forEach(function(doc) {
+                let newProg = { 
+                    "lat": doc.data().coords.latitude,
+                    "lon": doc.data().coords.longitude,
+                    "image": doc.data().image, 
+                    "name": doc.data().name
+                };
+                youEventsRefData.push(newProg)
+                console.log(newProg)
+            });
+            console.log(youEventsRefData)
+
+
+            if(youEventsRefData.length > 0){
+                let selecetedLocal = youEventsRefData[0]
+
+                let newPoint = {
+                    lat: selecetedLocal.lat,
+                    lng: selecetedLocal.lon
+                }
+    
+                
+                currentComponent.setState({ centerPoint: newPoint });
+
+            }else{
+
+            }
+
+        }); 
+    }
+
+    handleSearchChange  = event => {
+        this.setState({ searchVal: event.target.value });
+    };
+
+    add = event => {
+        if(event.key === 'Enter'){
+            this.handleSearch()
+        }
+    };
 
     render() {
         const {classes, theme} = this.props;
@@ -508,8 +572,9 @@ class Home extends Component {
             <div className="mainContent">
                 <div className={"search"}>
                     <Paper className={classes.root} elevation={1} style={{width: 'inherit'}}>
-                        <InputBase className={classes.input} placeholder="Search"/>
-                        <IconButton className={classes.iconButton} aria-label="Search">
+                        <InputBase className={classes.input} placeholder="Search" onChange={this.handleSearchChange}
+                            value={this.state.searchVal} onKeyPress={(event) => this.add(event)}/>
+                        <IconButton className={classes.iconButton} aria-label="Search" onClick={this.handleSearch} >
                             <i class="material-icons">search</i>
                         </IconButton>
 
@@ -519,7 +584,7 @@ class Home extends Component {
                 <div style={{height: '100%', width: '100%'}}>
                     <GoogleMapReact
                         bootstrapURLKeys={{key: "AIzaSyB3mad1jG68mBLiQaNSiqu8muGTPog9Wag"}}
-                        defaultCenter={this.props.center}
+                        center={this.state.centerPoint}
                         defaultZoom={this.props.zoom}
                         options={mapOptions}
                     >
