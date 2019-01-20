@@ -61,7 +61,7 @@ const styles = theme => ({
   },
   menuButton: {
     marginLeft: 12,
-    marginRight: 36,
+    marginRight: 12,
   },
   hide: {
     display: 'none',
@@ -246,7 +246,6 @@ class Header extends React.Component {
         <CssBaseline />
         <div
           color="primary"
-          position="fixed"
           className={classNames(classes.appBar, {
             [classes.appBarShift]: this.state.open,
           }, "header")}
@@ -262,12 +261,11 @@ class Header extends React.Component {
             >
               <i className="material-icons sideButton">sort</i>
             </IconButton>
-            <div className="headerTitle"><Link to="/">Goat Tracks</Link></div>
+            <Link className="headerTitle" to="/">Goat Tracks</Link>
 
             {this.props.user ?
               
               <div className="headerSideRight">
-
               <Button
                className="headerProfileImage"
                buttonRef={node => {

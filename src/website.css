@@ -21,17 +21,6 @@ button:focus {
     transition: box-shadow .2s ease-in-out;
 }
 
-.headerTitle {
-    pointer-events: none;
-    position: absolute;
-    top: 5px;
-    font-size: 1.5em;
-    color: red;
-    left: 0;
-    right: 0;
-}
-
-
 .headerSideRight {
     position: absolute;
     right: 15px;
@@ -47,11 +36,16 @@ button:focus {
     bottom: 0px;
 }
 
-.headerTitle a {
-    text-decoration: none;
+.headerTitle {
+    top: 5px;
+    font-size: 2em;
     color: white;
+    text-decoration: none;
     font-family: 'Lobster', cursive;
-    font-size: 1.4em;
+}
+
+.headerTitle:hover {
+    color: white;
 }
 
 .headerNavLinks a:hover {
