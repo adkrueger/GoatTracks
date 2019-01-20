@@ -11,7 +11,7 @@ class Events extends Component {
             eventData: [],
             locationData: [],
             eventPeopleData: 0,
-            youEventsRefData: null,
+            yourLikeData: null,
             willAttend: false,
         }
     }
@@ -66,7 +66,7 @@ class Events extends Component {
                     
                 }); 
 
-                const youEventsRef = db.collection("eventPeople").where("eventID", "==", ccData.id).where("userName", "==", currentComponent.props.user.displayName);
+                const youEventsRef = db.collection("eventPeople").where("eventID", "==", ccData.id, "&&", "userName", "==", currentComponent.props.user.displayName);
                 let youEventsRefData = [];
                 //Query Data
                 youEventsRef.get().then(function(querySnapshot) {
@@ -80,6 +80,7 @@ class Events extends Component {
                             "uid": doc.id,
                         };
                         youEventsRefData.push(newProg)
+                        console.log(newProg)
                     });
                     console.log(youEventsRefData)
 
@@ -115,12 +116,13 @@ class Events extends Component {
         firestore.settings(settings);
         const db = firebase.firestore();
 
+        var idselected = currentComponent.state.yourLikeData
 
         if(this.state.willAttend == true){
-            console.log(currentComponent.state.yourLikeData)
+            console.log(idselected)
             console.log("Not Attending")
 
-            var idSEl = currentComponent.state.yourLikeData.uid
+            var idSEl = idselected.uid
             console.log(idSEl)
 
             db.collection("eventPeople").doc(idSEl).delete().then(function() {
