@@ -11,6 +11,7 @@ class Events extends Component {
             eventData: [],
             locationData: [],
             eventPeopleData: [],
+            youEventsRefData: null,
             willAttend: false,
         }
     }
@@ -72,11 +73,11 @@ class Events extends Component {
 
                     querySnapshot.forEach(function(doc) {
                         let newProg = { 
-                        "eventID": doc.data().eventID,
-                        "userID": doc.data().userID, 
-                        "userImg": doc.data().userImg,
-                        "userName": doc.data().userImg,
-                        "uid": doc.id,
+                            "eventID": doc.data().eventID,
+                            "userID": doc.data().userID, 
+                            "userImg": doc.data().userImg,
+                            "userName": doc.data().userName,
+                            "uid": doc.id,
                         };
                         youEventsRefData.push(newProg)
                     });
@@ -87,6 +88,8 @@ class Events extends Component {
                     }else{
                         currentComponent.setState({ willAttend:  false});    
                     }
+                    currentComponent.setState({ yourLikeData: youEventsRefData[0] });    
+
                 }); 
 
 
@@ -103,7 +106,46 @@ class Events extends Component {
     }
 
     handleSubmitEventAction  = () => {
+        let currentComponent = this;
+
+        console.log(this.state.yourLikeData.uid)
         this.setState(state => ({ willAttend: !state.willAttend }));
+
+
+        const firestore = firebase.firestore();
+        const settings = {timestampsInSnapshots: false};
+        firestore.settings(settings);
+        const db = firebase.firestore();
+
+
+        if(this.state.willAttend){
+            console.log(currentComponent.state.yourLikeData)
+            console.log("Not Attending")
+            console.log(this.state.yourLikeData.uid)
+
+            db.collection("eventPeople").doc(this.state.yourLikeDat.uid).delete().then(function() {
+                console.log("Document successfully deleted!");
+                currentComponent.setState({ yourLikeData: null });    
+
+            }).catch(function(error) {
+                console.error("Error removing document: ", error);
+            });
+        }else{
+            console.log("Attending")
+            db.collection("eventPeople").add({
+                eventID: currentComponent.state.eventData.id,
+                userID: currentComponent.props.uid, 
+                userImg: currentComponent.props.profileURL,
+                userName: currentComponent.props.user.displayName,
+            })
+            .then(function(docRef) {
+                currentComponent.setState({ yourLikeData: docRef });    
+                console.log("Document written with ID: ", docRef.id);
+            })
+            .catch(function(error) {
+                console.error("Error adding document: ", error);
+            });
+        }
     };
 
     render() {
