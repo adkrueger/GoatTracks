@@ -332,10 +332,6 @@ class Header extends React.Component {
           
           <br />
 
-
-
-          <br />
-
           <List>
             <Link to="/" className="sideLinks">
             <ListItem button key="Home">
