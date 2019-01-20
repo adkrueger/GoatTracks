@@ -59,7 +59,7 @@ class Calendar extends Component {
               <div className="col-sm-10">
                 <br></br>
                 <br></br>
-                  <h6>Events</h6>
+                  <h2>Events</h2>
                 <br></br>
   
                 <div className="row">

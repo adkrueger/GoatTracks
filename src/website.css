@@ -112,7 +112,7 @@ button:focus {
     height: 60px;
 }
 
-.waypoint:hover .overlay{
+.waypoint:hover .overlay {
     opacity: 1.0;
     visibility: visible;
 }
@@ -214,7 +214,8 @@ a:hover {
     top: -200px;
     max-height: 400px;
 }
-.overlayEvent{
+
+.overlayEvent {
     top: 0;
     background-color: black;
     position: absolute;
@@ -260,7 +261,7 @@ a:hover {
     opacity: 0.75;
 }
 
-#loader-wrapper{
+#loader-wrapper {
     transition: 0.5s ease;
     position: fixed;
     left: 0;
@@ -269,7 +270,7 @@ a:hover {
     height: 100%;
     background: #AC2B37;
     z-index: 9999;
-    animation: fadeOut 0s;
+    animation: fadeOut 8s;
     visibility: hidden;
 }
 
@@ -336,7 +337,7 @@ a:hover {
     text-align: center;
     overflow: hidden;
     box-shadow: none;
- }
+}
 
 .cardModImg {
     filter: blur(3px);
@@ -346,7 +347,7 @@ a:hover {
     height: 100%;
 }
 
-.cardMod:hover .cardModImg{
+.cardMod:hover .cardModImg {
     filter: blur(0px);
 }
 
@@ -355,37 +356,38 @@ a:hover {
 }
 
 .cardMod-title {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  color: white;
-  transform: translate(-50%, -50%);
-  font-family: 'Anton', sans-serif;
-  font-weight: lighter;
-  font-size: 1.6em;
-  text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: white;
+    transform: translate(-50%, -50%);
+    font-family: Roboto, sans-serif;
+    font-weight: bold;
+    font-size: 1.6em;
+    text-align: center;
 }
-    
+
 .cardMod-text {
-  position: absolute;
-  bottom: 0.02%;
-  left: 50%;
-  color: white;
-  transform: translate(-50%, -50%);
-  font-weight: bolder;
-  font-family: 'Thasadith', sans-serif;
-  font-style: italic;
+    position: absolute;
+    bottom: 0.02%;
+    left: 50%;
+    color: white;
+    transform: translate(-50%, -50%);
+    font-weight: bolder;
+    font-family: 'Thasadith', sans-serif;
+    font-style: italic;
 
 }
+
 .cardMod-overlay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  height: 100%;
-  width: 100%;
-  background-color: black;
-  opacity: 0.3;
-  transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    opacity: 0.3;
+    transform: translate(-50%, -50%);
 }
 
 .col-sm-4 {
