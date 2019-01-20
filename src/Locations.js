@@ -80,68 +80,72 @@ class Locations extends Component {
 
     render() {
       return (
-      <div className="mainContent">
-          <div className="row">
-            <div className="col-sm-12">
 
-                 <div className="eventBGI">
-                      <p><img src={this.state.locationData.image}/></p>
-                      <div className="overlayEvent"></div>
-                  </div>
 
-                  <h1 className="eventTitle">{this.state.locationData.name}</h1>
+<div className="mainContent">
 
-            
+<div className="eventBGI">
+    <p><img src={this.state.locationData.image}/></p>
+    <div className="overlayEvent"></div>
+</div>
+
+<h1 className="eventTitle">{this.state.locationData.name}</h1>
+
+
+
+<div className="row">
+
+
+  <div className="col-sm-1"></div>
+  <div className="col-sm-10">
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+
+    <br></br>
+    <br></br>
+      <h6>Recommended</h6>
+    <br></br>
+
+    <div className="row">
+
+
+        {this.state.eventData.map(function(d, idx){
+          return (
+            <div className="col-sm-4" key={idx}>
+
+              <div className="cardMod"> 
+                  <Link to={{ pathname: '/events/' + d.uid}} className="progLink">
+                    <img className="cardModImg" src={d.image} alt="Card image cap"></img>
+                    <div className="cardMod-overlay"></div>
+                    <h5 className="cardMod-title">{d.name}</h5>
+                  </Link>
+                  <Link to={"/composer/" + d.composerName} className="progLink">
+                    <p className="cardMod-text">View Event</p>
+                  </Link>
+              </div>
+
               <br></br>
 
-              <div className="row">
-            <div className="col-sm-1"></div>
-            <div className="col-sm-10">
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
+            </div> 
+          );
 
-              <br></br>
-              <h5>Events</h5>
-              <p></p>
+        })}
 
-              {this.state.eventData.map(function(event, idx){
-                return (
+      
+    </div>
 
-                   
-                
-                <div class="row">
-                        <div className="col-sm-4">
-                            <div className="card">
-                                <Link to={'/events/'+event.uid}>
-
-                                    <img className="card-img-top" src={event.image} alt="Card image cap"></img>
-                                    <div className="card-body">
-                                        <h5 className="card-title">{event.name}</h5>
-                                        <p className="card-text">View Event</p>
-                                    </div>
-                                </Link>
-                            </div>
-                        </div>
-                    </div>
-    
-                    );
-                })}  
+           
+  </div>
+  <div className="col-sm-1"></div>
+</div>
+  
+</div>
 
 
-            </div>
-            <div className="col-sm-1"></div>
-          </div>
-            
- 
-                          
-            </div>
-          </div> 
-            
-      </div>
+
       );
     }
 }
