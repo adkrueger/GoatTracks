@@ -40,12 +40,12 @@ button:focus {
 
 .headerTitle {
     position: absolute;
-    top: 5px;
-    font-size: 2em;
+    top: 10px;
+    font-size: 1.7em;
     color: white;
     text-decoration: none;
     font-family: 'Lobster', cursive;
-    left: 64px;
+    left: 84px;
 }
 
 .headerTitle:hover {
