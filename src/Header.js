@@ -38,7 +38,7 @@ import InputBase from '@material-ui/core/InputBase';
 import Divider from '@material-ui/core/Divider';
 
 
-const drawerWidth = 240;
+const drawerWidth = 200;
 
 
 const styles = theme => ({
@@ -54,8 +54,6 @@ const styles = theme => ({
     }),
   },
   appBarShift: {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
@@ -74,6 +72,8 @@ const styles = theme => ({
     whiteSpace: 'nowrap',
   },
   drawerOpen: {
+    boxShadow: '0px 20px 50px -10px black',
+    zIndex: 9999,
     width: drawerWidth,
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
@@ -81,6 +81,8 @@ const styles = theme => ({
     }),
   },
   drawerClose: {
+    boxShadow: '0px 20px 50px -10px black',
+    zIndex: 2,
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
