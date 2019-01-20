@@ -240,6 +240,7 @@ class Header extends React.Component {
     const { classes, theme } = this.props;
     const { openLog } = this.state;
 
+    let currentComponent = this;
 
     return (
       <div className={classes.root}>
@@ -290,7 +291,7 @@ class Header extends React.Component {
                    <Paper>
                      <ClickAwayListener onClickAway={this.handleClose}>
                        <MenuList>
-                         <MenuItem onClick={this.handleClose}>{this.props.user.displayName}</MenuItem>
+                         <Link to={"/profile/" + this.props.user.displayName} ><MenuItem onClick={this.handleClose}>{this.props.user.displayName}</MenuItem></Link>
                          <MenuItem onClick={this.handleClickOpenLogin}>Create Event</MenuItem>
                          <MenuItem onClick={this.props.logout}>Logout</MenuItem>
                        </MenuList>
@@ -356,7 +357,7 @@ class Header extends React.Component {
             <br />
 
 
-            <ListItem button key="Settings">
+            <ListItem  button key="Settings">
                 <ListItemIcon>
                     <i className="material-icons sideButton">settings</i>
                 </ListItemIcon>
@@ -365,7 +366,7 @@ class Header extends React.Component {
              <br />
 
 
-            <ListItem button key="Compositions">
+            <ListItem  button key="Compositions">
                 <ListItemIcon>
                     <i className="material-icons sideButton">person</i>
                 </ListItemIcon>
