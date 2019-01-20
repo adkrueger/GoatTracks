@@ -193,7 +193,15 @@ class Events extends Component {
                         <br></br><br></br>
                         <br></br><br></br>
                         
-                        <h3 className="eventAttendees">{this.state.eventPeopleData} people are attending</h3>
+                        <h3 className="eventAttendees">
+                            {this.state.eventPeopleData == 1 ?
+                               this.state.eventPeopleData + " person is attending"
+                            :
+                               this.state.eventPeopleData + " people are attending"
+                            }
+
+                            
+                        </h3>
                         <h3 className="attendQuestion">Will you be attending as well?</h3>
                         <button className="attendingButton" onClick={this.handleSubmitEventAction}>
                             {this.state.willAttend ?
