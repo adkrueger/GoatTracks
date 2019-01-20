@@ -23,13 +23,12 @@ button:focus {
 
 .headerTitle {
     position: absolute;
-    top: 10px;
-    height: 60px;
-    left: 35%;
-    width: 30%;
-    font-size: 1.1em;
+    top: 5px;
+    font-size: 1.5em;
     color: red;
     text-align: center;
+    left: 0;
+    right: 0;
 }
 
 
@@ -72,18 +71,12 @@ button:focus {
     color: black;
 }
 
-.annotation {
-    background-color: #C41E3A;
-}
-
 .search {
     z-index: 1;
-    position: absolute;
-    margin-left: auto;
-    margin-right: auto;
+    position: fixed;
     margin-top: 10px;
-    left: 0;
-    right: 0;
+    margin-left: 70px;
+    width: 50vw;
 }
 
 .labelHall i {
