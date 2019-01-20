@@ -65,8 +65,6 @@ class Profile extends Component {
                 "userImg": doc.data().userImg,
                 "userName": doc.data().userName,
               };
-              ccData = newLocation
-
 
               const eventsRef = db.collection("events").doc(doc.data().eventID);        
               let eventsRefData = [];
@@ -83,13 +81,14 @@ class Profile extends Component {
                     "image": doc.data().image,
                     "uid": doc.id,
                   };
-                  eventsRefData.push(newProg)
+                  ccData.push(newProg)
 
-                  console.log(eventsRefData)
+                  console.log(ccData)
+                  currentComponent.setState({ eventData: ccData });    
+
                 }else{
                   console.log("failed feenkfl")
                 }
-                currentComponent.setState({ eventData: eventsRefData });    
 
               });
 
