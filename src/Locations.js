@@ -122,9 +122,6 @@ class Locations extends Component {
                     <div className="cardMod-overlay"></div>
                     <h5 className="cardMod-title">{d.name}</h5>
                   </Link>
-                  <Link to={"/composer/" + d.composerName} className="progLink">
-                    <p className="cardMod-text">View Event</p>
-                  </Link>
               </div>
 
               <br></br>
