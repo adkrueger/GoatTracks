@@ -19,6 +19,24 @@ import IconButton from '@material-ui/core/IconButton';
 const mapOptions = {
     styles: [
         {
+            "featureType": "poi",
+            "elementType": "labels.icon",
+            "stylers": [
+                {
+                    "visibility": "off"
+                }
+            ]
+        },
+        {
+            "featureType": "poi",
+            "elementType": "labels.text",
+            "stylers": [
+                {
+                    "visibility": "off"
+                }
+            ]
+        },
+        {
             "featureType": "administrative",
             "elementType": "geometry.fill",
             "stylers": [
@@ -142,36 +160,6 @@ const mapOptions = {
                 {
                     "saturation": "34"
                 },
-                {
-                    "visibility": "off"
-                }
-            ]
-        },
-        {
-            "featureType": "poi",
-            "elementType": "labels.text.fill",
-            "stylers": [
-                {
-                    "color": "#5a524f"
-                },
-                {
-                    "saturation": "0"
-                }
-            ]
-        },
-        {
-            "featureType": "poi",
-            "elementType": "labels.text.stroke",
-            "stylers": [
-                {
-                    "visibility": "off"
-                }
-            ]
-        },
-        {
-            "featureType": "poi",
-            "elementType": "labels.icon",
-            "stylers": [
                 {
                     "visibility": "off"
                 }
