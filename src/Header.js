@@ -193,6 +193,48 @@ class Header extends React.Component {
     this.setState({ passwordLog: event.target.value });
   };
 
+  handleEventSubmit = () => {
+    this.setState({ openLoginDialog: false });
+    //onChange={this.handleChangePasswordLog}
+
+    //Event : value={this.state.emailLog}
+    //Location : value={this.state.passwordLog}
+    //Image : value={this.state.nameReg}
+    // Description : value={this.state.emailReg}
+
+    let currentComponent = this;
+
+
+    const firestore = firebase.firestore();
+    const settings = {timestampsInSnapshots: false};
+    firestore.settings(settings);
+    const db = firebase.firestore();
+
+
+
+    if(this.state.emailLog.trim() == "", this.state.passwordLog.trim() == "", this.state.nameReg.trim() == "" , this.state.emailReg.trim() == ""){
+      
+    }else{
+        db.collection("events").add({
+            attending: 0,
+            description: currentComponent.state.emailReg, 
+            image: currentComponent.state.nameReg,
+            location: currentComponent.state.passwordLog,
+            name: currentComponent.state.emailLog,
+        })
+        .then(function(doc) {
+          console.log("Document written with ID: ", doc.id);
+
+      })
+      .catch(function(error) {
+          console.error("Error adding document: ", error);
+      });
+    }
+
+
+
+  };
+
   render() {
 
     const { classes, theme } = this.props;
@@ -251,6 +293,7 @@ class Header extends React.Component {
                      <ClickAwayListener onClickAway={this.handleClose}>
                        <MenuList>
                          <MenuItem onClick={this.handleClose}>{this.props.user.displayName}</MenuItem>
+                         <MenuItem onClick={this.handleClickOpenLogin}>Create Event</MenuItem>
                          <MenuItem onClick={this.props.logout}>Logout</MenuItem>
                        </MenuList>
                      </ClickAwayListener>
@@ -345,29 +388,46 @@ class Header extends React.Component {
           onClose={this.handleCloseLogin}
           aria-labelledby="form-dialog-title"
         >
-          <DialogTitle id="form-dialog-title">Login</DialogTitle>
+          <DialogTitle id="form-dialog-title">Create An Event</DialogTitle>
           <DialogContent>
             <DialogContentText>
-              Welcome Back!.
+              Start a Community!
             </DialogContentText>
             <TextField
               autoFocus
               margin="dense"
               id="name"
               onChange={this.handleChangeEmailLog}
-              label="Email Address"
+              label="Name of Event"
               value={this.state.emailLog}
-              type="email"
+              type="text"
               fullWidth
             />
             <TextField
-              autoFocus
               margin="dense"
               id="name"
               onChange={this.handleChangePasswordLog}
               value={this.state.passwordLog}
-              label="Password"
-              type="password"
+              label="Event Location"
+              type="text"
+              fullWidth
+            />
+            <TextField
+              margin="dense"
+              id="name"
+              label="Event Image URL"
+              onChange={this.handleChangeNameReg}
+              value={this.state.nameReg}
+              type="text"
+              fullWidth
+            />
+            <TextField
+              margin="dense"
+              id="name"
+              value={this.state.emailReg}
+              onChange={this.handleChangeEmailReg}
+              label="Description"
+              type="email"
               fullWidth
             />
           </DialogContent>
@@ -375,8 +435,8 @@ class Header extends React.Component {
             <Button onClick={this.handleCloseLogin} color="primary">
               Cancel
             </Button>
-            <Button onClick={this.props.login} color="primary">
-              Login
+            <Button onClick={this.handleEventSubmit} color="primary">
+              Submit
             </Button>
           </DialogActions>
         </Dialog>
