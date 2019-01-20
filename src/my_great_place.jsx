@@ -32,6 +32,7 @@ export default class Annotation extends Component {
         return (
             <div className={"waypoint"}>
                 <img className={"waypoint-image"} src={this.props.tyProImg}/>
+                <i className="material-icons" id="waypoint-icon">{this.props.tyImg}</i>
                 <div className="overlay">
                     <div className="hoverDialog">
                         <Link className="labelHall" to={{pathname: '/location/' + this.props.text}}>
