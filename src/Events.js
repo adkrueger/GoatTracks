@@ -10,6 +10,8 @@ class Events extends Component {
         this.state = {
             eventData: [],
             locationData: [],
+            eventPeopleData: [],
+            willAttend: false,
         }
     }
 
@@ -42,6 +44,52 @@ class Events extends Component {
                 console.log(newEvent);
                 currentComponent.setState({eventData: ccData});
 
+
+                const eventsRef = db.collection("eventPeople").where("eventID", "==", ccData.id);
+                let eventsRefData = [];
+                //Query Data
+                eventsRef.get().then(function(querySnapshot) {
+
+                    querySnapshot.forEach(function(doc) {
+                        let newProg = { 
+                        "eventID": doc.data().eventID,
+                        "userID": doc.data().userID, 
+                        "userImg": doc.data().userImg,
+                        "userName": doc.data().userImg,
+                        "uid": doc.id,
+                        };
+                        eventsRefData.push(newProg)
+                    });
+
+                    currentComponent.setState({ eventPeopleData: eventsRefData });    
+                    
+                }); 
+
+                const youEventsRef = db.collection("eventPeople").where("eventID", "==", ccData.id).where("userName", "==", currentComponent.props.user.displayName);
+                let youEventsRefData = [];
+                //Query Data
+                youEventsRef.get().then(function(querySnapshot) {
+
+                    querySnapshot.forEach(function(doc) {
+                        let newProg = { 
+                        "eventID": doc.data().eventID,
+                        "userID": doc.data().userID, 
+                        "userImg": doc.data().userImg,
+                        "userName": doc.data().userImg,
+                        "uid": doc.id,
+                        };
+                        youEventsRefData.push(newProg)
+                    });
+                    console.log(youEventsRefData)
+
+                    if(eventsRefData.length > 0){
+                        currentComponent.setState({ willAttend:  true});    
+                    }else{
+                        currentComponent.setState({ willAttend:  false});    
+                    }
+                }); 
+
+
             } else {
                 // doc.data() will be undefined in this case
                 console.log("No such document!");
@@ -51,7 +99,12 @@ class Events extends Component {
         });
 
         console.log(this.state.eventData)
+
     }
+
+    handleSubmitEventAction  = () => {
+        this.setState(state => ({ willAttend: !state.willAttend }));
+    };
 
     render() {
         return (
@@ -73,11 +126,11 @@ class Events extends Component {
                         <br></br><br></br>
                         <br></br><br></br>
                         
-                        <h3 className="eventAttendees">{this.state.eventData.attending} people are attending</h3>
+                        <h3 className="eventAttendees">{this.state.eventPeopleData.length} people are attending</h3>
                         <h3 className="attendQuestion">Will you be attending as well?</h3>
-                        <button className="attendingButton">YES</button>
+                        <button className="attendingButton" onClick={this.handleSubmitEventAction}>YES</button>
                         <span>    </span>
-                        <button className="attendingButton">NO</button>
+                        <button className="attendingButton" onClick={this.handleSubmitEventAction}>NO</button>
                         
                         
                     </div>
