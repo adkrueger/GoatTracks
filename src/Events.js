@@ -186,11 +186,15 @@ class Events extends Component {
                         
                         <h3 className="eventAttendees">{this.state.eventPeopleData} people are attending</h3>
                         <h3 className="attendQuestion">Will you be attending as well?</h3>
-                        <button className="attendingButton" onClick={this.handleSubmitEventAction}>YES</button>
-                        <span>    </span>
-                        <button className="attendingButton" onClick={this.handleSubmitEventAction}>NO</button>
+                        <button className="attendingButton" onClick={this.handleSubmitEventAction}>
+                            {this.state.willAttend ?
+                              "Check Out"
+                            : 
+                              "Check In"
+                            }
                         
-                        
+                        </button>
+   
                     </div>
                     <div className="col-sm-2">
                     </div>
