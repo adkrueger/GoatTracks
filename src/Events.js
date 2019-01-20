@@ -3,6 +3,7 @@ import firebase from "./Firestore";
 import locationsRef from "@material-ui/core/es/styles/multiKeyStore";
 import {Link} from "react-router-dom";
 
+
 class Events extends Component {
     constructor() {
         super();
@@ -55,20 +56,38 @@ class Events extends Component {
     render() {
         return (
             <div className="mainContent">
-                <div className="row">
-                    <div className="col-sm-12">
-
-                        <br/>
-                        <div className="eventBGI">
+            <div className="eventBGI">
                             <p><img src={this.state.eventData.image}/></p>
                             <div className="overlayEvent"></div>
                         </div>
 
                         <h1 className="eventTitle">{this.state.eventData.name}</h1>
+                <div className="row">
+                <div className="col-sm-1">
+                </div>
+                    <div className="col-sm-4">
+
+                        <br/>
+                        
                         <br/>
                         <br></br><br></br>
                         <br></br><br></br>
-
+                        
+                        <h3 className="eventAttendees">{this.state.eventData.attending} people are attending</h3>
+                        <h3 className="attendQuestion">Will you be attending as well?</h3>
+                        <button className="attendingButton">YES</button>
+                        <span>    </span>
+                        <button className="attendingButton">NO</button>
+                        
+                        
+                    </div>
+                    <div className="col-sm-2">
+                    </div>
+                    <div className="col-sm-4">
+                        <br/>
+                        <br/>
+                        <br></br><br></br>
+                        <br></br><br></br>
                         <h3 className="eventDesc">{this.state.eventData.description}</h3>
                         <br/>
                         <br></br><br></br>
@@ -77,11 +96,6 @@ class Events extends Component {
                                 This event is held at: {this.state.eventData.location}
                             </div>
                         </Link>
-                        <h3 className="eventAttendees">{this.state.eventData.attending} people are attending</h3>
-                        <h3 className="attendQuestion">Will you be attending as well?</h3>
-                        <button className="attendingButton">YES</button>
-                        <span>    </span>
-                        <button className="attendingButton">NO</button>
                     </div>
                 </div>
             </div>
