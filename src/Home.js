@@ -1,16 +1,16 @@
-import React, { Component, PropTypes } from 'react';
+import React, {Component, PropTypes} from 'react';
 import GoogleMapReact from 'google-map-react';
 import Button from '@material-ui/core/Button';
-import firebase, { auth, provider } from './Firestore.js';
-import './Firestore.js';  
+import firebase, {auth, provider} from './Firestore.js';
+import './Firestore.js';
 
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 
 import shouldPureComponentUpdate from 'react-pure-render/function';
 import Annotation from './my_great_place.jsx';
 
-import { withStyles } from '@material-ui/core/styles';
+import {withStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
 import Divider from '@material-ui/core/Divider';
@@ -378,197 +378,192 @@ const mapOptions = {
 
 const styles = {
     root: {
-      padding: '2px 4px',
-      display: 'flex',
-      alignItems: 'center',
-      width: 400,
+        padding: '2px 4px',
+        display: 'flex',
+        alignItems: 'center',
+        width: 400,
     },
     input: {
-      marginLeft: 8,
-      flex: 1,
+        marginLeft: 8,
+        flex: 1,
     },
     iconButton: {
-      padding: 10,
+        padding: 10,
     },
     divider: {
-      width: 1,
-      height: 28,
-      margin: 4,
+        width: 1,
+        height: 28,
+        margin: 4,
     },
-  };
-  
+};
+
 
 class Home extends Component {
 
     static defaultProps = {
         center: {
-          lat: 42.2746,
-          lng: -71.8063
+            lat: 42.2746,
+            lng: -71.8063
         },
         zoom: 18
     };
 
     constructor() {
         super();
-    
+
         this.state = {
-           name: '',
-           locations: []
+            name: '',
+            locations: []
         }
     }
-    
+
 
     shouldComponentUpdate = shouldPureComponentUpdate;
 
 
     componentDidMount() {
 
-            if (window.navigator.geolocation) {
-                // geolocation is available
-                console.log("available")
-                window.navigator.geolocation.getCurrentPosition(
-        
+        if (window.navigator.geolocation) {
+            // geolocation is available
+            console.log("available")
+            window.navigator.geolocation.getCurrentPosition(
                 // Success callback
-                function(position) {
-        
+                function (position) {
+
                     console.log(position)
-            
+
                 },
-            
+
                 // Optional error callback
-                function(error){
+                function (error) {
                     console.log("fail")
 
-            
+
                 }
             );
-        
-            } 
-            else {
-                // geolocation is not supported
-                console.log("not available")
-        
-            }
- 
-    
-  
+
+        } else {
+            // geolocation is not supported
+            console.log("not available")
+
+        }
+
+
         let currentComponent = this;
         //Load Firebase Stuff
         const firestore = firebase.firestore();
         const settings = {timestampsInSnapshots: false};
         firestore.settings(settings);
-    
+
         //Load Location or Path for Query
         const db = firebase.firestore();
         const compRef = db.collection("locations");
-    
+
         var ccData = []
         //Query Data
-        compRef.get().then(function(querySnapshot) {
+        compRef.get().then(function (querySnapshot) {
 
-          querySnapshot.forEach(function(doc) {
+            querySnapshot.forEach(function (doc) {
 
-             let type;
-             let locName = doc.data().name;
-             let typeImg = "";
+                let type;
+                let locName = doc.data().name;
+                let typeImg = "";
 
-              if (locName.includes("Alpha") || locName.includes("Sigma") || locName.includes("Phi") ||
-                  locName.includes("Tau") || locName.includes("Theta") || locName.includes("Zeta")){
-                  type = "Greek"
-                  typeImg = "domain"
-              } else if ((locName.includes("Hall") && !(locName.includes("Boynton") || locName.includes("Goddard") ||
-                  locName.includes("Kaven") || locName.includes("Olin") || locName.includes("Stratton"))) ||
-                  locName.includes("Apartment") || locName.includes("Elbridge") || locName.includes("Schussler") ||
-                  locName.includes("Stoddard") || locName.includes("Trowbridge") || locName.includes("Salisbury") ||
-                  locName.includes("Faraday")){
-                  type = "Residence Hall"
-                  typeImg = "people"
-              } else if (locName.includes("Hughes") || locName.includes("Jeppson") || locName.includes("Skull") ||
-                  locName.includes("Power House")){
-                  type = "Other"
-                  typeImg = "location_city"
-              } else if (locName.includes("Laboratories") || locName.includes("Hall") || locName.includes("Alden") ||
-                  locName.includes("Gateway Park") || locName.includes("Washburn") || locName.includes("Life Sciences")){
-                  type = "Education"
-                  typeImg = "school"
-              } else {
-                  type = "Other"
-                  typeImg = "location_city"
-              }
+                if (locName.includes("Alpha") || locName.includes("Sigma") || locName.includes("Phi") ||
+                    locName.includes("Tau") || locName.includes("Theta") || locName.includes("Zeta")) {
+                    type = "Greek"
+                    typeImg = "domain"
+                } else if ((locName.includes("Hall") && !(locName.includes("Boynton") || locName.includes("Goddard") ||
+                    locName.includes("Kaven") || locName.includes("Olin") || locName.includes("Stratton"))) ||
+                    locName.includes("Apartment") || locName.includes("Elbridge") || locName.includes("Schussler") ||
+                    locName.includes("Stoddard") || locName.includes("Trowbridge") || locName.includes("Salisbury") ||
+                    locName.includes("Faraday")) {
+                    type = "Residence Hall"
+                    typeImg = "people"
+                } else if (locName.includes("Hughes") || locName.includes("Jeppson") || locName.includes("Skull") ||
+                    locName.includes("Power House")) {
+                    type = "Other"
+                    typeImg = "location_city"
+                } else if (locName.includes("Laboratories") || locName.includes("Hall") || locName.includes("Alden") ||
+                    locName.includes("Gateway Park") || locName.includes("Washburn") || locName.includes("Life Sciences")) {
+                    type = "Education"
+                    typeImg = "school"
+                } else {
+                    type = "Other"
+                    typeImg = "location_city"
+                }
 
-              let newProg = { 
-                "id": doc.id,
-                "name": doc.data().name, 
-                "lat": doc.data().coords.latitude,
-                "lon": doc.data().coords.longitude,
-                "image": doc.data().image,
-                "type": type,
-                "typeImg": typeImg,
-                "showing": false
-              };
-              ccData.push(newProg)
-          });
-          currentComponent.setState({ locations: ccData });    
+                let newProg = {
+                    "id": doc.id,
+                    "name": doc.data().name,
+                    "lat": doc.data().coords.latitude,
+                    "lon": doc.data().coords.longitude,
+                    "image": doc.data().image,
+                    "type": type,
+                    "typeImg": typeImg,
+                    "showing": false
+                };
+                ccData.push(newProg)
+            });
+            currentComponent.setState({locations: ccData});
 
-        });    
+        });
 
 
-      }
+    }
 
 
     render() {
-        const { classes, theme } = this.props;
+        const {classes, theme} = this.props;
 
-      return (
-      <div className="mainContent">
-      <center className={"search"}>
-      <Paper className={classes.root} elevation={1} style={{width: '50%'}}>
-      
-            
-            <InputBase className={classes.input} placeholder="Search"/>
-            <IconButton className={classes.iconButton} aria-label="Search">
-            <i class="material-icons">search</i>            
-            </IconButton>
-            
-          </Paper>
-          </center>
+        return (
+            <div className="mainContent">
+                <div className={"search"}>
+                    <Paper className={classes.root} elevation={1} style={{width: 'inherit'}}>
+                        <InputBase className={classes.input} placeholder="Search"/>
+                        <IconButton className={classes.iconButton} aria-label="Search">
+                            <i class="material-icons">search</i>
+                        </IconButton>
 
-            <div style={{ height: '100%', width: '100%' }}>
-                <GoogleMapReact
-                bootstrapURLKeys={{ key: "AIzaSyB3mad1jG68mBLiQaNSiqu8muGTPog9Wag" }}
-                defaultCenter={this.props.center}
-                defaultZoom={this.props.zoom}
-                options={mapOptions}
-                >
-        
+                    </Paper>
+                </div>
 
-                 {this.state.locations.map(function(anno, idx){
-                    return (
-                         <Annotation post={anno} lat={anno.lat} lng={anno.lon} text={anno.name} tyImg={anno.typeImg} tyProImg={anno.image}>
-
-                         </Annotation> 
-                      
-                    );
-                  })}
+                <div style={{height: '100%', width: '100%'}}>
+                    <GoogleMapReact
+                        bootstrapURLKeys={{key: "AIzaSyB3mad1jG68mBLiQaNSiqu8muGTPog9Wag"}}
+                        defaultCenter={this.props.center}
+                        defaultZoom={this.props.zoom}
+                        options={mapOptions}
+                    >
 
 
-                </GoogleMapReact>
+                        {this.state.locations.map(function (anno, idx) {
+                            return (
+                                <Annotation post={anno} lat={anno.lat} lng={anno.lon} text={anno.name}
+                                            tyImg={anno.typeImg} tyProImg={anno.image}>
+
+                                </Annotation>
+
+                            );
+                        })}
 
 
+                    </GoogleMapReact>
 
-          </div>
-            
-      </div>
-      );
+
+                </div>
+
+            </div>
+        );
     }
 }
 
 /** <!--   _
-       .__(.)< (MEOW)
-        \___)   
+ .__(.)< (MEOW)
+ \___)
  ~~~~~~~~~~~~~~~~~~-->
  */
 
 
-  
-  export default withStyles(styles, { withTheme: true })(Home);
+
+export default withStyles(styles, {withTheme: true})(Home);
