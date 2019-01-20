@@ -422,6 +422,35 @@ class Home extends Component {
 
 
     componentDidMount() {
+
+            if (window.navigator.geolocation) {
+                // geolocation is available
+                console.log("available")
+                window.navigator.geolocation.getCurrentPosition(
+        
+                // Success callback
+                function(position) {
+        
+                    console.log(position)
+            
+                },
+            
+                // Optional error callback
+                function(error){
+                    console.log("fail")
+
+            
+                }
+            );
+        
+            } 
+            else {
+                // geolocation is not supported
+                console.log("not available")
+        
+            }
+ 
+    
   
         let currentComponent = this;
         //Load Firebase Stuff
