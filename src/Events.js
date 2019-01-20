@@ -10,7 +10,7 @@ class Events extends Component {
         this.state = {
             eventData: [],
             locationData: [],
-            eventPeopleData: [],
+            eventPeopleData: 0,
             youEventsRefData: null,
             willAttend: false,
         }
@@ -62,7 +62,7 @@ class Events extends Component {
                         eventsRefData.push(newProg)
                     });
 
-                    currentComponent.setState({ eventPeopleData: eventsRefData });    
+                    currentComponent.setState({ eventPeopleData: eventsRefData.length });    
                     
                 }); 
 
@@ -108,8 +108,6 @@ class Events extends Component {
     handleSubmitEventAction  = () => {
         let currentComponent = this;
 
-        console.log(this.state.yourLikeData.uid)
-        this.setState(state => ({ willAttend: !state.willAttend }));
 
 
         const firestore = firebase.firestore();
@@ -118,14 +116,17 @@ class Events extends Component {
         const db = firebase.firestore();
 
 
-        if(this.state.willAttend){
+        if(this.state.willAttend == true){
             console.log(currentComponent.state.yourLikeData)
             console.log("Not Attending")
-            console.log(this.state.yourLikeData.uid)
 
-            db.collection("eventPeople").doc(this.state.yourLikeDat.uid).delete().then(function() {
+            var idSEl = currentComponent.state.yourLikeData.uid
+            console.log(idSEl)
+
+            db.collection("eventPeople").doc(idSEl).delete().then(function() {
                 console.log("Document successfully deleted!");
                 currentComponent.setState({ yourLikeData: null });    
+                currentComponent.setState({ eventPeopleData: currentComponent.state.eventPeopleData - 1 });    
 
             }).catch(function(error) {
                 console.error("Error removing document: ", error);
@@ -134,18 +135,33 @@ class Events extends Component {
             console.log("Attending")
             db.collection("eventPeople").add({
                 eventID: currentComponent.state.eventData.id,
-                userID: currentComponent.props.uid, 
-                userImg: currentComponent.props.profileURL,
+                userID: currentComponent.props.user.uid, 
+                userImg: currentComponent.props.user.photoURL,
                 userName: currentComponent.props.user.displayName,
             })
-            .then(function(docRef) {
-                currentComponent.setState({ yourLikeData: docRef });    
-                console.log("Document written with ID: ", docRef.id);
+            .then(function(doc) {
+                console.log("Document written with ID: ", doc.id);
+
+                let youEventsRefData = [];
+                
+                let newProg = { 
+                    "eventID": currentComponent.state.eventData.id,
+                    "userID": currentComponent.props.user.uid, 
+                    "userImg": currentComponent.props.user.photoURL,
+                    "userName": currentComponent.props.user.displayName,
+                    "uid": doc.id,
+                };
+                youEventsRefData.push(newProg)
+                currentComponent.setState({ yourLikeData: youEventsRefData[0] });    
+                currentComponent.setState({ eventPeopleData: currentComponent.state.eventPeopleData + 1 });    
+
             })
             .catch(function(error) {
                 console.error("Error adding document: ", error);
             });
         }
+        this.setState(state => ({ willAttend: !state.willAttend }));
+
     };
 
     render() {
@@ -168,7 +184,7 @@ class Events extends Component {
                         <br></br><br></br>
                         <br></br><br></br>
                         
-                        <h3 className="eventAttendees">{this.state.eventPeopleData.length} people are attending</h3>
+                        <h3 className="eventAttendees">{this.state.eventPeopleData} people are attending</h3>
                         <h3 className="attendQuestion">Will you be attending as well?</h3>
                         <button className="attendingButton" onClick={this.handleSubmitEventAction}>YES</button>
                         <span>    </span>
