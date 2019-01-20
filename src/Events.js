@@ -66,10 +66,17 @@ class Events extends Component {
                     
                 }); 
 
-                const youEventsRef = db.collection("eventPeople").where("eventID", "==", ccData.id, "&&", "userName", "==", currentComponent.props.user.displayName);
+                console.log(currentComponent.props.user.uid)
+                console.log(ccData.id)
+
+                const youEventsRef = db.collection("eventPeople").where("eventID", "==", ccData.id).where("userID", "==", currentComponent.props.user.uid);
+                
+                
+                //.where("eventID", "==", ccData.id, "&&", "userID", "==", currentComponent.props.user.uid);
                 let youEventsRefData = [];
                 //Query Data
                 youEventsRef.get().then(function(querySnapshot) {
+                    console.log(querySnapshot)
 
                     querySnapshot.forEach(function(doc) {
                         let newProg = { 
@@ -84,7 +91,7 @@ class Events extends Component {
                     });
                     console.log(youEventsRefData)
 
-                    if(eventsRefData.length > 0){
+                    if(youEventsRefData.length > 0){
                         currentComponent.setState({ willAttend:  true});    
                     }else{
                         currentComponent.setState({ willAttend:  false});    
@@ -96,7 +103,7 @@ class Events extends Component {
 
             } else {
                 // doc.data() will be undefined in this case
-                console.log("No such document!");
+                console.log("No such document! are here");
             }
         }).catch(function (error) {
             console.log("Error getting document:", error);
